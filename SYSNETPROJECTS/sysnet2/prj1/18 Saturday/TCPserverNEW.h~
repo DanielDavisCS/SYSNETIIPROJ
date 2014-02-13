@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <netdb.h> //for gethostbyname
+#include <sys/socket.h>
+#include <string.h> //for memset
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <net/if.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <stdlib.h>
+
+#define MAX_NUM_LISTENER_ALLOWED 1024
+#define INTERFACE "eth0"
+
+int create_TCP_Socket(void);
+struct hostent *info_Host();
+void printErrorMessage( char *message );
+struct sockaddr_in destination_Address( struct hostent *hostptr);
+struct sockaddr_in bind_Socket(int listensockfd, struct sockaddr_in servaddr);
+struct sockaddr_in listen_On_Socket(int listensockfd, struct sockaddr_in servaddr);
+void print_Server_info(int listensockfd, struct hostent *hostptr, struct sockaddr_in servaddr);
+void run_Server(int listensockfd, struct sockaddr_in servaddr);

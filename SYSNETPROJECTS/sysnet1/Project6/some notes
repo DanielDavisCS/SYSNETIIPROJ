@@ -1,0 +1,25 @@
+1. No global. The inode is passed by reference.
+
+I noticed that the function doesn't set
+
+           inode->flags = 0;
+
+That line needs to be added to make sure that the inode
+ passed-by-reference is initialized correctly. 
+
+You have to create an inode and then initialize it and
+then store it to your disk. That is done in format(). There is
+ no need to use malloc(). You just have to create a static structure
+ and initialize it properly.
+
+2. No. No need to malloc(). What would you malloc()? That is only needed
+ to allocate memory dynamically.
+
+3. 100 KB, not 100MB. The disk, when formatted, is constant in size. It's not
+ a variable-sized virtual disk as you may know from VMWare or VirtualBox.
+
+4. In filesystem.c, the only thing that is implemented is intToByteArray() and
+ byteArrayToInt(). Everything else needs to be implemented.
+
+    Copy the main function from filesystem.c into main.c and use it to
+ implement your test code.

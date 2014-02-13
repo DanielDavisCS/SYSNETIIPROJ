@@ -1,0 +1,15 @@
+CFLAGS = -g -Wall
+CC = gcc
+
+all: proj1
+
+objects = TCPserver.o
+
+proj6: $(objects)
+	$(CC) -o proj1 $(objects) 
+
+TCPserver.o: TCPserver.c
+
+.PHONY : clean
+clean: 
+	rm proj1 $(objects)
